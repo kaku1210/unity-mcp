@@ -8,15 +8,26 @@
 - 本地首个 bootstrap commit 已创建
 - 文档与 UPM 包骨架初始化
 - 父仓库忽略规则配置
+- 已发布到 GitHub 公共仓库：`https://github.com/kaku1210/unity-mcp`
+- 已将公开历史中的提交作者统一修正为 `kaku1210 <kaku1210@users.noreply.github.com>`
 
-当前尚未完成远程公共仓库发布，原因是当前环境缺少：
+## 当前发布结果
 
-- 可用的 GitHub CLI (`gh`)
-- 可用的 `GH_TOKEN` / `GITHUB_TOKEN`
-- 远程 public 仓库 URL
-- 最终公开提交应使用的作者名/邮箱
+- GitHub 仓库可访问：`https://github.com/kaku1210/unity-mcp`
+- 默认分支：`main`
+- 当前发布内容：仓库骨架、文档、UPM 包骨架、脚本占位与公开发布脚本
+
+## 脚本用途
+
+`publish-public-repo.ps1` 仍然保留，后续可用于：
+
+- 重建新的远程仓库
+- 推送另一个测试仓库
+- 在首次公开推送前自动修正本地 bootstrap 历史作者
 
 ## 推荐发布步骤
+
+以下步骤保留作为“重新发布 / 迁移远程仓库”时的参考。
 
 ### 1. 在 GitHub 上创建空 public 仓库
 
