@@ -25,9 +25,15 @@
 - 当前默认 package 名：`com.wildrogue.unity-mcp`
 - 当前项目暂不立即修改 `Packages/manifest.json`，待 MVP 骨架稳定后再接入
 
+## 父仓库交接与路径归属
+
+- `bootstrap-unity-mcp-repo` 作为父仓库里的 bootstrap change，只负责把 `unity-mcp` 子仓库孵化出来。
+- bootstrap 完成后，`unity-mcp` 本身的功能开发、设计说明、验证记录与 feature 摘要都应保留在 `Tools/unity-mcp/` 目录树中。
+- 推荐将 feature/change 记录统一放到 `docs/changes/`；父仓库只保留 nested-repo 边界、消费方接入和 archive trail。
+- 当前 bootstrap 迁移记录见：`docs/changes/bootstrap-unity-mcp-repo.md`
+
 ## 下一步
 
-1. 在 `unity-mcp` 内完成独立 `git init -b main`
-2. 开始实现 UPM 包最小骨架
-3. 再进入 MVP 工具开发
-4. 稳定后再把当前项目作为正式消费者接入
+1. 在 `docs/changes/` 中为后续 `unity-mcp` feature 建立子仓库内的变更记录
+2. 在 `packages/`、`host/`、`samples/`、`scripts/` 中继续实现 MVP 工具能力
+3. 稳定后再把当前项目作为正式消费者接入

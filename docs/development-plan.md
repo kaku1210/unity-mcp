@@ -177,6 +177,12 @@
 
 ## 日常开发流程建议
 
+### 文档与实现路径规则
+
+- 如果需求目标属于 `unity-mcp` 子仓库本身的功能开发，则设计、计划、验证记录和实现文件都应放在 `Tools/unity-mcp/` 内。
+- 推荐把 feature/change 记录放在 `docs/changes/`，实现代码放在 `packages/`、`host/`、`samples/` 或 `scripts/`。
+- 父仓库只在 nested-repo 边界调整、当前项目消费接入或仓库级长期规则同步时再改动。
+
 ### 每次迭代建议顺序
 
 1. 在 `unity-mcp` 子仓库内实现一小块工具能力

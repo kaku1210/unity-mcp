@@ -33,9 +33,12 @@ unity-mcp/
 - 根目录名称固定为 `unity-mcp`
 - 当前默认 UPM 包名使用 `com.wildrogue.unity-mcp`，以避免与公共生态潜在命名冲突
 - 后续若需要对外发布为更通用的公共包，再单独评估包名迁移方案
+- 如果需求目标属于 `unity-mcp` 子仓库本身的功能开发，则对应实现与说明路径必须位于 `Tools/unity-mcp/` 下；推荐把 feature/change 记录放在 `docs/changes/`
 
 ## 参考文档
 
 - `docs/architecture.md`
 - `docs/development-plan.md`
 - `docs/repository-bootstrap.md`
+- `docs/changes/README.md`
+- `docs/changes/bootstrap-unity-mcp-repo.md`
