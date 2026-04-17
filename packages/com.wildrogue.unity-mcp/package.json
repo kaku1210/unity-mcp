@@ -1,0 +1,17 @@
+{
+  "name": "com.wildrogue.unity-mcp",
+  "displayName": "Unity MCP",
+  "version": "0.1.0-alpha.1",
+  "unity": "6000.0",
+  "description": "C#-first Unity MCP package incubated inside the WildRogue workspace.",
+  "keywords": [
+    "unity",
+    "mcp",
+    "ai",
+    "tooling",
+    "automation"
+  ],
+  "author": {
+    "name": "WildRogue"
+  }
+}
