@@ -56,11 +56,6 @@ else {
     & git remote add origin $RemoteUrl
 }
 
-if ($hasHead -and -not $hasUpstream) {
-    Write-Host "[unity-mcp] rewriting local bootstrap history author before first public push"
-    & git filter-branch -f --env-filter "export GIT_AUTHOR_NAME='$AuthorName'; export GIT_AUTHOR_EMAIL='$AuthorEmail'; export GIT_COMMITTER_NAME='$AuthorName'; export GIT_COMMITTER_EMAIL='$AuthorEmail';" -- --all
-}
-
 $hasChanges = (& git status --porcelain)
 if ([string]::IsNullOrWhiteSpace($hasChanges)) {
     if ($hasHead) {
@@ -81,6 +76,12 @@ if ([string]::IsNullOrWhiteSpace($hasChanges)) {
 else {
     & git add .
     & git commit -m $CommitMessage
+}
+
+if ($hasHead -and -not $hasUpstream) {
+    Write-Host "[unity-mcp] rewriting local bootstrap history author before first public push"
+    $env:FILTER_BRANCH_SQUELCH_WARNING = '1'
+    & git filter-branch -f --env-filter "export GIT_AUTHOR_NAME='$AuthorName'; export GIT_AUTHOR_EMAIL='$AuthorEmail'; export GIT_COMMITTER_NAME='$AuthorName'; export GIT_COMMITTER_EMAIL='$AuthorEmail';" -- --all
 }
 
 & git push -u origin $currentBranch
