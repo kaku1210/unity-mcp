@@ -5,6 +5,7 @@
 `unity-mcp` 子仓库已经完成：
 
 - 独立 Git 仓库初始化
+- 本地首个 bootstrap commit 已创建
 - 文档与 UPM 包骨架初始化
 - 父仓库忽略规则配置
 
@@ -50,6 +51,7 @@ AuthorName <author@example.com>
 脚本会自动：
 
 - 设置当前子仓库的本地 Git 作者
+- 若当前只有本地 bootstrap commit，则在推送前自动修正该提交作者
 - 配置或更新 `origin`
 - `git add .`
 - 生成首个提交

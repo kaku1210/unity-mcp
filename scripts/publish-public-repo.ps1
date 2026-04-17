@@ -40,6 +40,14 @@ if ([string]::IsNullOrWhiteSpace($currentBranch)) {
     throw "Unable to determine current branch."
 }
 
+$hasUpstream = $true
+try {
+    & git rev-parse --abbrev-ref --symbolic-full-name "@{u}" *> $null
+}
+catch {
+    $hasUpstream = $false
+}
+
 $existingOrigin = (& git remote)
 if ($existingOrigin -contains 'origin') {
     & git remote set-url origin $RemoteUrl
@@ -48,12 +56,17 @@ else {
     & git remote add origin $RemoteUrl
 }
 
+if ($hasHead -and -not $hasUpstream) {
+    Write-Host "[unity-mcp] rewriting local bootstrap history author before first public push"
+    & git filter-branch -f --env-filter "export GIT_AUTHOR_NAME='$AuthorName'; export GIT_AUTHOR_EMAIL='$AuthorEmail'; export GIT_COMMITTER_NAME='$AuthorName'; export GIT_COMMITTER_EMAIL='$AuthorEmail';" -- --all
+}
+
 $hasChanges = (& git status --porcelain)
 if ([string]::IsNullOrWhiteSpace($hasChanges)) {
     if ($hasHead) {
         $lastAuthor = (& git log -1 --pretty=format:"%an <%ae>").Trim()
         $targetAuthor = "$AuthorName <$AuthorEmail>"
-        if ($lastAuthor -ne $targetAuthor) {
+        if ($hasUpstream -and $lastAuthor -ne $targetAuthor) {
             Write-Host "[unity-mcp] amending latest commit author from '$lastAuthor' to '$targetAuthor'"
             & git commit --amend --no-edit --reset-author
         }
